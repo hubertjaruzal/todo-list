@@ -1,3 +1,39 @@
+@font-face {
+  font-family: "Lato";
+  src:
+    url("./fonts/Lato2OFLWeb/Lato/fonts/Lato-Regular.eot") format('eot'),
+    url("./fonts/Lato2OFLWeb/Lato/fonts/Lato-Regular.ttf") format('ttf'),
+    url("./fonts/Lato2OFLWeb/Lato/fonts/Lato-Regular.woff") format('woff'),
+    url("./fonts/Lato2OFLWeb/Lato/fonts/Lato-Regular.woff2") format('woff2');
+}
+
+@font-face {
+  font-family: "LatoHairline";
+  src:
+      url("./fonts/Lato2OFLWeb/Lato/fonts/Lato-Hairline.eot") format('eot'),
+      url("./fonts/Lato2OFLWeb/Lato/fonts/Lato-Hairline.ttf") format('ttf'),
+      url("./fonts/Lato2OFLWeb/Lato/fonts/Lato-Hairline.woff") format('woff'),
+      url("./fonts/Lato2OFLWeb/Lato/fonts/Lato-Hairline.woff2") format('woff2');
+}
+
+@font-face {
+  font-family: "LatoLight";
+  src:
+      url("./fonts/Lato2OFLWeb/Lato/fonts/Lato-Light.eot") format('eot'),
+      url("./fonts/Lato2OFLWeb/Lato/fonts/Lato-Light.ttf") format('ttf'),
+      url("./fonts/Lato2OFLWeb/Lato/fonts/Lato-Light.woff") format('woff'),
+      url("./fonts/Lato2OFLWeb/Lato/fonts/Lato-Light.woff2") format('woff2');
+}
+
+@font-face {
+  font-family: "LatoBold";
+  src:
+      url("./fonts/Lato2OFLWeb/Lato/fonts/Lato-Bold.eot") format('eot'),
+      url("./fonts/Lato2OFLWeb/Lato/fonts/Lato-Bold.ttf") format('ttf'),
+      url("./fonts/Lato2OFLWeb/Lato/fonts/Lato-Bold.woff") format('woff'),
+      url("./fonts/Lato2OFLWeb/Lato/fonts/Lato-Bold.woff2") format('woff2'),
+}
+
 body {
     margin: 0;
     padding: 0;

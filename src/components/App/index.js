@@ -13,14 +13,12 @@ class App extends Component {
         return (
             <Router>
                 <div className="app">
-                    <header className="app-header">
-                        <span className="app-title">To Do List</span>
-                    </header>
-                    <section className="app-box-container">
-                        <div className="app-box">
-                            <Route exact path="/" component={List} />
-                        </div>
-                    </section>
+                    <div className="app-box">
+                        <header className="app-header">
+                            <span className="app-title">Your<br/>Things</span>
+                        </header>
+                        <Route exact path="/" component={List} />
+                    </div>
                 </div>
             </Router>
         );
