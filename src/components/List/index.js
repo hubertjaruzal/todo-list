@@ -3,13 +3,17 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import Row from './Row';
+
+import './index.scss';
+
 class List extends Component {
     render() {
         return (
-            <ul>
+            <ul className="list">
                 {
                     this.props.todoList.map(item => (
-                        <div>{item}</div>
+                        <Row item={item} />
                     ))
                 }
             </ul>
