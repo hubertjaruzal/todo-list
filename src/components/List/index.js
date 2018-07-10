@@ -2,26 +2,27 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import fontawesome from '@fortawesome/fontawesome'
-import fontawesomeFAS from '@fortawesome/fontawesome-free-solid';
-import fontawesomeFAR from '@fortawesome/fontawesome-free-regular';
+import IconFA from '@fortawesome/react-fontawesome';
 
 import Row from './Row';
 
 import './index.scss';
 
-fontawesome.library.add(fontawesomeFAS, fontawesomeFAR);
-
 class List extends Component {
     render() {
         return (
-            <ul className="list">
-                {
-                    this.props.todoList.map((item, index) => (
-                        <Row item={item} key={index} />
-                    ))
-                }
-            </ul>
+            <div>
+                <ul className="list">
+                    {
+                        this.props.todoList.map((item, index) => (
+                            <Row item={item} key={index} />
+                        ))
+                    }
+                </ul>
+                <button className="add-button">
+                    <IconFA icon={["fas", "plus"]} />
+                </button>
+            </div>
         );
     }
 }
