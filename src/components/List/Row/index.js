@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import './index.scss';
+
 class Row extends Component {
     render() {
         return (
-            <div>
-                {this.props.item}
-            </div>
+            <li className="row">
+                <button className="button button-check"/>
+                <span>{this.props.item}</span>
+                <div className="settings">
+                    <button className="button button-edit"/>
+                    <button className="button button-remove"/>
+                </div>
+            </li>
         );
     }
 }
