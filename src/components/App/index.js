@@ -3,6 +3,7 @@ import {
     BrowserRouter as Router,
     Route,
 } from 'react-router-dom';
+import IconFA from '@fortawesome/react-fontawesome';
 
 import List from '../List';
 
@@ -18,6 +19,9 @@ class App extends Component {
                             <span className="app-title">Your<br/>Things</span>
                         </header>
                         <Route exact path="/" component={List} />
+                        <button className="add-button">
+                            <IconFA icon={["fas", "plus"]} />
+                        </button>
                     </div>
                 </div>
             </Router>
