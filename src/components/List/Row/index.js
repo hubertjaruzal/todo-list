@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import IconFA from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
 import './index.scss';
 
@@ -11,11 +12,11 @@ class Row extends Component {
                 <button className="button button-check">
                     <IconFA icon={["fas", "check"]} />
                 </button>
-                <span>{this.props.item}</span>
+                <span>{this.props.item.message}</span>
                 <div className="settings">
-                    <button className="button button-edit">
+                    <Link to={`/edit/${this.props.item.id}`} className="button button-edit">
                         <IconFA icon={["fas", "pencil-alt"]} />
-                    </button>
+                    </Link>
                     <button className="button button-remove">
                         <IconFA icon={["far", "trash-alt"]} />
                     </button>
@@ -26,7 +27,7 @@ class Row extends Component {
 }
 
 Row.propTypes = {
-    item: PropTypes.string.isRequired,
+    item: PropTypes.object.isRequired,
 };
 
 export default Row;

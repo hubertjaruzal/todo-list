@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import IconFA from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
 import Row from './Row';
 
@@ -19,9 +20,9 @@ class List extends Component {
                         ))
                     }
                 </ul>
-                <button className="nav-button">
+                <Link to="/add" className="nav-button">
                     <IconFA icon={["fas", "plus"]} />
-                </button>
+                </Link>
             </div>
         );
     }

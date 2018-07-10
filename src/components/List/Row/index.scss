@@ -24,7 +24,11 @@
 }
 
 .settings {
-    button {
+    display: flex;
+    button, a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         margin-left: 15px;
         border: none;
         width: 31px;
