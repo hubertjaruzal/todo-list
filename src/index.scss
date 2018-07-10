@@ -39,3 +39,24 @@ body {
     padding: 0;
     font-family: sans-serif;
 }
+
+button {
+    cursor: pointer;
+    outline: none;
+}
+
+.nav-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 60px;
+    position: absolute;
+    right: -10px;
+    bottom: -10px;
+    background: #4b60a2;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 20px;
+}

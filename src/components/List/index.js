@@ -19,7 +19,7 @@ class List extends Component {
                         ))
                     }
                 </ul>
-                <button className="add-button">
+                <button className="nav-button">
                     <IconFA icon={["fas", "plus"]} />
                 </button>
             </div>

@@ -5,6 +5,8 @@ import {
 } from 'react-router-dom';
 
 import List from '../List';
+import FormAdd from '../Form/Add';
+import FormEdit from '../Form/Edit';
 
 import './index.scss';
 
@@ -18,6 +20,8 @@ class App extends Component {
                             <span className="app-title">Your<br/>Things</span>
                         </header>
                         <Route exact path="/" component={List} />
+                        <Route exact path="/add" component={FormAdd} />
+                        <Route exact path="/edit/:id" component={FormEdit} />
                     </div>
                 </div>
             </Router>
