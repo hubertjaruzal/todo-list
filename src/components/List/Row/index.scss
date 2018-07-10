@@ -7,13 +7,14 @@
     padding: 20px 0;
     border-bottom: 1px solid #e1e1e1;
     .button {
-        width: 30px;
-        height: 30px;
         border-radius: 50%;
         outline: none;
         cursor: pointer;
+        color: white;
     }
     .button-check {
+        width: 30px;
+        height: 30px;
         background: white;
         border: 1px solid #e1e1e1;
         margin-right: 15px;
@@ -28,6 +29,8 @@
     button {
         margin-left: 15px;
         border: none;
+        width: 31px;
+        height: 31px;
     }
     .button-edit {
         background: #ff9800;
