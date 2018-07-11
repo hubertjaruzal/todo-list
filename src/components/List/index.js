@@ -15,11 +15,15 @@ class List extends Component {
         super(props);
 
         this.state = {
-            todoList: []
+            todoList: [],
+            show: 'all',
         }
+
+        this.inputRef = React.createRef();
 
         this.setList = this.setList.bind(this);
         this.filterList = this.filterList.bind(this);
+        this.handleShow = this.handleShow.bind(this);
     }
 
     componentDidMount() {
@@ -40,11 +44,74 @@ class List extends Component {
         this.setList(this.props.todoList.filter(item => item.message.includes(e.target.value)));
     }
 
+    handleShow(type) {
+        let todoList = [];
+        if(type === 'complete') {
+            todoList = this.props.todoList.filter(item => item.complete)
+        } else if(type === 'incomplete') {
+            todoList = this.props.todoList.filter(item => !item.complete)
+        } else {
+            todoList = this.props.todoList
+        }
+
+        if(this.inputRef.current.value) {
+            this.setState({
+                show: type,
+                todoList: todoList.filter(item => item.message.includes(this.inputRef.current.value))
+            });
+        } else {
+            this.setState({
+                show: type,
+                todoList
+            });
+        }
+    }
+
     render() {
         return (
             <div className="list-container">
                 <div className="list-settings">
-                    <input onChange={this.filterList} placeholder="Search..." />
+                    <input ref={this.inputRef} onChange={this.filterList} placeholder="Search..." />
+                    <div className="radio-buttons-container">
+                        <label
+                            className={`radio-button ${this.state.show === 'all' ? 'radio-button-active' : null}`}
+                            htmlFor="all"
+                        >
+                            <input
+                                type="radio"
+                                id="all"
+                                checked={this.state.show === 'all'}
+                                onChange={() => this.handleShow('all')}
+                            />
+                            <span>All</span>
+                        </label>
+                        <label
+                            className={`radio-button ${this.state.show === 'complete' ? 'radio-button-active' : null}`}
+                            htmlFor="complete"
+                        >
+                            <input
+                                type="radio"
+                                id="complete"
+                                checked={this.state.show === 'complete'}
+                                onChange={() => this.handleShow('complete')}
+                            />
+                            <span>complete</span>
+                        </label>
+                        <label
+                            className={`radio-button ${this.state.show === 'incomplete' ? 'radio-button-active' : null}`}
+                            htmlFor="incomplete"
+                        >
+                            <input
+                                type="radio"
+                                id="incomplete"
+                                checked={this.state.show === 'incomplete'}
+                                onChange={() => this.handleShow('incomplete')}
+                            />
+                            <span>Incomplete</span>
+                        </label>
+
+
+                    </div>
                 </div>
                 <ul className="list">
                     {
