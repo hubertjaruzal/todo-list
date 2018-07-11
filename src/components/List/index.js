@@ -4,18 +4,51 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import IconFA from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
+import _isEqual from 'lodash/isEqual';
 
 import Row from './Row';
 
 import './index.scss';
 
 class List extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            todoList: []
+        }
+
+        this.setList = this.setList.bind(this);
+        this.filterList = this.filterList.bind(this);
+    }
+
+    componentDidMount() {
+        this.setList(this.props.todoList);
+    }
+
+    componentDidUpdate(prevProps) {
+        if(!_isEqual(this.props.todoList, prevProps.todoList)) {
+            this.setList(this.props.todoList);
+        }
+    }
+
+    setList(todoList) {
+        this.setState({ todoList });
+    }
+
+    filterList(e) {
+        this.setList(this.props.todoList.filter(item => item.message.includes(e.target.value)));
+    }
+
     render() {
         return (
             <div className="list-container">
+                <div className="list-settings">
+                    <input onChange={this.filterList} placeholder="Search..." />
+                </div>
                 <ul className="list">
                     {
-                        this.props.todoList.map((item, index) => (
+                        this.state.todoList.map((item, index) => (
                             <Row item={item} key={index} />
                         ))
                     }
