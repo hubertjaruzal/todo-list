@@ -166,7 +166,7 @@ class List extends Component {
                                 checked={this.state.show === 'complete'}
                                 onChange={() => this.handleShow('complete')}
                             />
-                            <span>complete</span>
+                            <span>Complete</span>
                         </label>
                         <label
                             className={`radio-button ${this.state.show === 'incomplete' ? 'radio-button-active' : null}`}
