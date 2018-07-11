@@ -29,7 +29,7 @@ export function addItem(data, history) {
     return (dispatch, getState) => {
         dispatch({
             type: 'ADD_ITEM',
-            data: { id: generateID(getState().todo.list), message: data.message, done: data.done }
+            data: { id: generateID(getState().todo.list), message: data.message, complete: data.complete }
         });
         history.push('/');
         dispatch(saveDataInLocalStorage());
@@ -50,9 +50,9 @@ export function updateMessage(data, history) {
     }
 }
 
-export function toggleDone(data) {
+export function toggleComplete(data) {
     return dispatch => {
-        dispatch(updateItem({ id: data.id, message: data.message, done: !data.done }));
+        dispatch(updateItem({ id: data.id, message: data.message, complete: !data.complete }));
     }
 }
 

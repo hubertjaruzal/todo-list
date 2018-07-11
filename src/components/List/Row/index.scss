@@ -19,11 +19,11 @@
         font-size: 12px;
         justify-content: center;
         align-items: center;
-        &--done {
+        &--complete {
             background: #4b60a2;
             border: 1px solid #4b60a2;
         }
-        &--undone {
+        &--incomplete {
             background: white;
         }
     }

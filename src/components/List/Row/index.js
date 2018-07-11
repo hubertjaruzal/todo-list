@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import IconFA from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 
-import { removeItem, toggleDone } from '../../../redux/actions/todo';
+import { removeItem, toggleComplete } from '../../../redux/actions/todo';
 
 import './index.scss';
 
@@ -14,8 +14,8 @@ class Row extends Component {
         return (
             <li className="row">
                 <button
-                    onClick={() => this.props.toggleDone(this.props.item)}
-                    className={`button button-check ${this.props.item.done ? 'button-check--done' : 'button-check--undone'}`}
+                    onClick={() => this.props.toggleComplete(this.props.item)}
+                    className={`button button-check ${this.props.item.complete ? 'button-check--complete' : 'button-check--incomplete'}`}
                 >
                     <IconFA icon={["fas", "check"]} />
                 </button>
@@ -36,12 +36,12 @@ class Row extends Component {
 Row.propTypes = {
     item: PropTypes.object.isRequired,
     removeItem: PropTypes.func.isRequired,
-    toggleDone: PropTypes.func.isRequired,
+    toggleComplete: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => bindActionCreators({
     removeItem,
-    toggleDone,
+    toggleComplete,
 }, dispatch);
 
 export default connect(null, mapDispatchToProps)(Row);
