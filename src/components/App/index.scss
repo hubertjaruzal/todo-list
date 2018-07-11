@@ -9,16 +9,17 @@
 }
 
 .app-box {
+    height: 100%;
+    width: 100%;
     position: relative;
     display: flex;
     flex-direction: column;
     min-height: 500px;
-    width: 100%;
     max-width: 700px;
     background: white;
     .app-header {
         display: flex;
-        height: calc(150px + 60px);
+        height: 150px;
         width: calc(100% - 60px);
         align-items: center;
         justify-content: start;
