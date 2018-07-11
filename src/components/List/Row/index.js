@@ -12,23 +12,28 @@ import './index.scss';
 class Row extends Component {
     render() {
         return (
-            <li className="row">
-                <button
-                    onClick={() => this.props.toggleComplete(this.props.item)}
-                    className={`button button-check ${this.props.item.complete ? 'button-check--complete' : 'button-check--incomplete'}`}
-                >
-                    <IconFA icon={["fas", "check"]} />
-                </button>
-                <span>{this.props.item.message}</span>
-                <div className="settings">
-                    <Link to={`/edit/${this.props.item.id}`} className="button button-edit">
-                        <IconFA icon={["fas", "pencil-alt"]} />
-                    </Link>
-                    <button onClick={() => this.props.removeItem(this.props.item.id)} className="button button-remove">
-                        <IconFA icon={["far", "trash-alt"]} />
-                    </button>
-                </div>
-            </li>
+            <div>
+                {
+                    !this.props.item.hidden &&
+                    <li className="row">
+                        <button
+                            onClick={() => this.props.toggleComplete(this.props.item)}
+                            className={`button button-check ${this.props.item.complete ? 'button-check--complete' : 'button-check--incomplete'}`}
+                        >
+                            <IconFA icon={["fas", "check"]} />
+                        </button>
+                        <span>{this.props.item.message}</span>
+                        <div className="settings">
+                            <Link to={`/edit/${this.props.item.id}`} className="button button-edit">
+                                <IconFA icon={["fas", "pencil-alt"]} />
+                            </Link>
+                            <button onClick={() => this.props.removeItem(this.props.item.id)} className="button button-remove">
+                                <IconFA icon={["far", "trash-alt"]} />
+                            </button>
+                        </div>
+                    </li>
+                }
+            </div>
         );
     }
 }

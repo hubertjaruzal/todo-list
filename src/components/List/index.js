@@ -30,12 +30,12 @@ class List extends Component {
     }
 
     componentDidMount() {
-        this.setList(this.props.todoList);
+        this.filterList({ target: { value: this.inputRef.current.value } });
     }
 
     componentDidUpdate(prevProps) {
         if(!_isEqual(this.props.todoList, prevProps.todoList)) {
-            this.setList(this.props.todoList);
+            this.filterList({ target: { value: this.inputRef.current.value } });
         }
     }
 
@@ -50,34 +50,64 @@ class List extends Component {
         if(this.state.show === 'complete') {
             this.setList(
                 this.props.todoList
-                    .filter(item => item.message.includes(e.target.value))
-                    .filter(item => item.complete)
+                    .map(item => {
+                        if(item.message.includes(e.target.value) && item.complete) {
+                            return { ...item, hidden: false };
+                        }
+                        return { ...item, hidden: true };
+                    })
             );
         } else if(this.state.show === 'incomplete') {
             this.setList(
                 this.props.todoList
-                    .filter(item => item.message.includes(e.target.value))
-                    .filter(item => !item.complete)
+                    .map(item => {
+                        if(item.message.includes(e.target.value) && !item.complete) {
+                            return { ...item, hidden: false };
+                        }
+                        return { ...item, hidden: true };
+                    })
             );
         } else {
-            this.setList(this.props.todoList.filter(item => item.message.includes(e.target.value)));
+            this.setList(this.props.todoList.map(item => {
+                if(item.message.includes(e.target.value)) {
+                    return { ...item, hidden: false };
+                }
+                return { ...item, hidden: true };
+            }));
         }
     }
 
     handleShow(type) {
         let todoList = [];
         if(type === 'complete') {
-            todoList = this.props.todoList.filter(item => item.complete)
+            todoList = this.props.todoList.map(item => {
+                if(item.complete) {
+                    return { ...item, hidden: false };
+                }
+                return { ...item, hidden: true };
+            })
         } else if(type === 'incomplete') {
-            todoList = this.props.todoList.filter(item => !item.complete)
+            todoList = this.props.todoList.map(item => {
+                if(!item.complete) {
+                    return { ...item, hidden: false };
+                }
+                return { ...item, hidden: true };
+            })
         } else {
-            todoList = this.props.todoList
+            todoList = this.props.todoList.map(item => {
+                return { ...item, hidden: false };
+            })
         }
 
         if(this.inputRef.current.value) {
             this.setState({
                 show: type,
-                todoList: todoList.filter(item => item.message.includes(this.inputRef.current.value))
+                todoList: todoList.map(item => {
+                    if(item.message.includes(this.inputRef.current.value)) {
+                        return { ...item, hidden: false };
+                    }
+                    return { ...item, hidden: true };
+                })
             });
         } else {
             this.setState({
@@ -169,7 +199,7 @@ class List extends Component {
                                                           {...provided.draggableProps}
                                                           {...provided.dragHandleProps}
                                                         >
-                                                          <Row item={item} key={index} />
+                                                            <Row item={item} key={item.id} />
                                                         </div>
                                                     )}
                                                 </Draggable>

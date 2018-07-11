@@ -1,6 +1,6 @@
 function generateID(list) {
     if(list.length) {
-        return (list[list.length - 1].id + 1);
+        return (Math.max.apply(Math, list.map(item => item.id)) + 1);
     }
     return 1;
 }
