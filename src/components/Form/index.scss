@@ -1,0 +1,25 @@
+.form-container {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    input {
+        border: none;
+        border-bottom: 1px solid #d6d6d6;
+        width: 50%;
+        height: 30px;
+        outline: none;
+        font-size: 16px;
+    }
+    button {
+        margin-top: 20px;
+        width: 200px;
+        color: white;
+        background: #2ebaf0;
+        border: none;
+        padding: 15px 10px;
+        font-size: 14px;
+        font-family: LatoLight;
+    }
+}
