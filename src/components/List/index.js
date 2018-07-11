@@ -40,11 +40,28 @@ class List extends Component {
     }
 
     setList(todoList) {
-        this.setState({ todoList });
+        this.setState({
+            show: this.state.show,
+            todoList
+        });
     }
 
     filterList(e) {
-        this.setList(this.props.todoList.filter(item => item.message.includes(e.target.value)));
+        if(this.state.show === 'complete') {
+            this.setList(
+                this.props.todoList
+                    .filter(item => item.message.includes(e.target.value))
+                    .filter(item => item.complete)
+            );
+        } else if(this.state.show === 'incomplete') {
+            this.setList(
+                this.props.todoList
+                    .filter(item => item.message.includes(e.target.value))
+                    .filter(item => !item.complete)
+            );
+        } else {
+            this.setList(this.props.todoList.filter(item => item.message.includes(e.target.value)));
+        }
     }
 
     handleShow(type) {
