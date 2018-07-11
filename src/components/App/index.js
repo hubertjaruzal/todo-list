@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import {
     BrowserRouter as Router,
     Route,
 } from 'react-router-dom';
 
+import { setItems } from '../../redux/actions/todo';
 import List from '../List';
 import FormAdd from '../Form/Add';
 import FormEdit from '../Form/Edit';
@@ -11,6 +15,10 @@ import FormEdit from '../Form/Edit';
 import './index.scss';
 
 class App extends Component {
+    componentDidMount() {
+        this.props.setItems();
+    }
+
     render() {
         return (
             <Router>
@@ -29,4 +37,12 @@ class App extends Component {
     }
 }
 
-export default App;
+App.propTypes = {
+    setItems: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+    setItems
+}, dispatch);
+
+export default connect(null, mapDispatchToProps)(App);

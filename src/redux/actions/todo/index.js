@@ -5,6 +5,26 @@ function generateID(list) {
     return 1;
 }
 
+export function setItems() {
+    return (dispatch, getState) => {
+        if(window.localStorage && window.localStorage.react_todo_list_items) {
+            dispatch({
+                type: 'SET_ITEMS',
+                data: JSON.parse(window.localStorage.react_todo_list_items)
+            });
+        }
+    }
+}
+
+function saveDataInLocalStorage() {
+    return (dispatch, getState) => {
+        if(window.localStorage) {
+            window.localStorage.setItem('react_todo_list_items', JSON.stringify(getState().todo.list));
+        }
+        return;
+    }
+}
+
 export function addItem(data, history) {
     return (dispatch, getState) => {
         dispatch({
@@ -12,11 +32,15 @@ export function addItem(data, history) {
             data: { id: generateID(getState().todo.list), message: data.message, done: data.done }
         });
         history.push('/');
+        dispatch(saveDataInLocalStorage());
     }
 }
 
 function updateItem(data) {
-    return { type: 'UPDATE_ITEM', data }
+    return dispatch => {
+        dispatch({ type: 'UPDATE_ITEM', data });
+        dispatch(saveDataInLocalStorage());
+    }
 }
 
 export function updateMessage(data, history) {
@@ -33,5 +57,8 @@ export function toggleDone(data) {
 }
 
 export function removeItem(id) {
-    return (dispatch, getState) => dispatch({ type: 'REMOVE_ITEM', data: id });
+    return (dispatch, getState) => {
+        dispatch({ type: 'REMOVE_ITEM', data: id });
+        dispatch(saveDataInLocalStorage());
+    }
 }

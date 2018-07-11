@@ -29,6 +29,11 @@ const todo = (state = initialState, action) => {
             ...state,
             list: state.list.filter(item => item.id !== action.data),
         };
+    case 'SET_ITEMS':
+        return {
+            ...state,
+            list: action.data,
+        };
     default:
         return state;
     }
