@@ -59,4 +59,9 @@ button {
     border-radius: 50%;
     color: white;
     font-size: 20px;
+
+    @media only screen and (max-width: 961px) {
+        right: 15px;
+        bottom: 15px;
+    }
 }

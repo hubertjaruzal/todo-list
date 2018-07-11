@@ -6,6 +6,12 @@
     align-items: center;
     background: #bac1d1;
     padding: 50px;
+
+    @media only screen and (max-width: 961px) {
+        height: 100vh;
+        width: 100vw;
+        padding: 0;
+    }
 }
 
 .app-box {
@@ -17,6 +23,11 @@
     min-height: 500px;
     max-width: 700px;
     background: white;
+
+    @media only screen and (max-width: 961px) {
+        max-width: inherit;
+    }
+
     .app-header {
         display: flex;
         height: 150px;
