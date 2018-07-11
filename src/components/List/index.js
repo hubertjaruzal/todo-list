@@ -25,95 +25,57 @@ class List extends Component {
 
         this.setList = this.setList.bind(this);
         this.filterList = this.filterList.bind(this);
-        this.handleShow = this.handleShow.bind(this);
         this.onDragEnd = this.onDragEnd.bind(this);
     }
 
     componentDidMount() {
-        this.filterList({ target: { value: this.inputRef.current.value } });
+        this.filterList(this.state.show);
     }
 
     componentDidUpdate(prevProps) {
         if(!_isEqual(this.props.todoList, prevProps.todoList)) {
-            this.filterList({ target: { value: this.inputRef.current.value } });
+            this.filterList(this.state.show);
         }
     }
 
-    setList(todoList) {
+    setList(todoList, show) {
         this.setState({
-            show: this.state.show,
-            todoList
+            todoList,
+            show
         });
     }
 
-    filterList(e) {
-        if(this.state.show === 'complete') {
-            this.setList(
-                this.props.todoList
-                    .map(item => {
-                        if(item.message.includes(e.target.value) && item.complete) {
-                            return { ...item, hidden: false };
-                        }
-                        return { ...item, hidden: true };
-                    })
-            );
-        } else if(this.state.show === 'incomplete') {
-            this.setList(
-                this.props.todoList
-                    .map(item => {
-                        if(item.message.includes(e.target.value) && !item.complete) {
-                            return { ...item, hidden: false };
-                        }
-                        return { ...item, hidden: true };
-                    })
-            );
-        } else {
-            this.setList(this.props.todoList.map(item => {
-                if(item.message.includes(e.target.value)) {
-                    return { ...item, hidden: false };
-                }
-                return { ...item, hidden: true };
-            }));
-        }
-    }
-
-    handleShow(type) {
-        let todoList = [];
+    filterList(type) {
         if(type === 'complete') {
-            todoList = this.props.todoList.map(item => {
-                if(item.complete) {
-                    return { ...item, hidden: false };
-                }
-                return { ...item, hidden: true };
-            })
+            this.setList(
+                this.props.todoList.map(item => {
+                    if(item.message.includes(this.inputRef.current.value) && item.complete) {
+                        return { ...item, hidden: false };
+                    }
+                    return { ...item, hidden: true };
+                }),
+                'complete'
+            );
         } else if(type === 'incomplete') {
-            todoList = this.props.todoList.map(item => {
-                if(!item.complete) {
-                    return { ...item, hidden: false };
-                }
-                return { ...item, hidden: true };
-            })
+            this.setList(
+                this.props.todoList.map(item => {
+                    if(item.message.includes(this.inputRef.current.value) && !item.complete) {
+                        return { ...item, hidden: false };
+                    }
+                    return { ...item, hidden: true };
+                }),
+                'incomplete'
+            );
         } else {
-            todoList = this.props.todoList.map(item => {
-                return { ...item, hidden: false };
-            })
-        }
-
-        if(this.inputRef.current.value) {
-            this.setState({
-                show: type,
-                todoList: todoList.map(item => {
+            this.setList(
+                this.props.todoList.map(item => {
                     if(item.message.includes(this.inputRef.current.value)) {
                         return { ...item, hidden: false };
                     }
                     return { ...item, hidden: true };
-                })
-            });
-        } else {
-            this.setState({
-                show: type,
-                todoList
-            });
+                }),
+                'all'
+            );
         }
     }
 
@@ -142,7 +104,7 @@ class List extends Component {
         return (
             <div className="list-container">
                 <div className="list-settings">
-                    <input ref={this.inputRef} onChange={this.filterList} placeholder="Search..." />
+                    <input ref={this.inputRef} onChange={() => this.filterList(this.state.show)} placeholder="Search..." />
                     <div className="radio-buttons-container">
                         <label
                             className={`radio-button ${this.state.show === 'all' ? 'radio-button-active' : null}`}
@@ -152,7 +114,7 @@ class List extends Component {
                                 type="radio"
                                 id="all"
                                 checked={this.state.show === 'all'}
-                                onChange={() => this.handleShow('all')}
+                                onChange={() => this.filterList('all')}
                             />
                             <span>All</span>
                         </label>
@@ -164,7 +126,7 @@ class List extends Component {
                                 type="radio"
                                 id="complete"
                                 checked={this.state.show === 'complete'}
-                                onChange={() => this.handleShow('complete')}
+                                onChange={() => this.filterList('complete')}
                             />
                             <span>Complete</span>
                         </label>
@@ -176,7 +138,7 @@ class List extends Component {
                                 type="radio"
                                 id="incomplete"
                                 checked={this.state.show === 'incomplete'}
-                                onChange={() => this.handleShow('incomplete')}
+                                onChange={() => this.filterList('incomplete')}
                             />
                             <span>Incomplete</span>
                         </label>
