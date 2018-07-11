@@ -9,6 +9,11 @@ const todo = (state = initialState, action) => {
             ...state,
             list: state.list.concat(action.data),
         };
+    case 'REMOVE_ITEM':
+        return {
+            ...state,
+            list: state.list.filter(item => item.id !== action.data),
+        };
     default:
         return state;
     }

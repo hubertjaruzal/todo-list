@@ -1,6 +1,6 @@
 function generateID(list) {
     if(list.length) {
-        return list[list.length - 1].id + 1
+        return (list[list.length - 1].id + 1);
     }
     return 1;
 }
@@ -13,4 +13,8 @@ export function addItem(data, history) {
         });
         history.push('/');
     }
+}
+
+export function removeItem(id) {
+    return (dispatch, getState) => dispatch({ type: 'REMOVE_ITEM', data: id });
 }
