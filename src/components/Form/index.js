@@ -42,9 +42,10 @@ class Form extends Component {
 
     render() {
         return (
-            <div className="form-container">
+            <form className="form-container">
                 <input value={this.state.item.message} onChange={this.handleChange} />
                 <button
+                    type="submit"
                     onClick={() => this.props.handleOnClick(this.state.item)}
                 >
                     {this.props.buttonText}
@@ -52,7 +53,7 @@ class Form extends Component {
                 <Link to="/" className="nav-button">
                     <IconFA icon={["fas", "arrow-left"]} />
                 </Link>
-            </div>
+            </form>
         );
     }
 }
