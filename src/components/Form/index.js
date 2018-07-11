@@ -18,12 +18,15 @@ class Form extends Component {
             }
         }
 
+        this.inputRef = React.createRef();
+
         this.handleChange = this.handleChange.bind(this);
         this.setItem = this.setItem.bind(this);
     }
 
     componentDidMount() {
         this.setItem(this.props.item);
+        this.inputRef.current.focus();
     }
 
     componentDidUpdate(prevProps) {
@@ -43,7 +46,7 @@ class Form extends Component {
     render() {
         return (
             <form className="form-container">
-                <input value={this.state.item.message} onChange={this.handleChange} />
+                <input ref={this.inputRef} value={this.state.item.message} onChange={this.handleChange} />
                 <button
                     type="submit"
                     onClick={() => this.props.handleOnClick(this.state.item)}
