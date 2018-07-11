@@ -46,12 +46,13 @@ class Form extends Component {
     render() {
         return (
             <form className="form-container">
+                <h1>{this.props.headerText}</h1>
                 <input ref={this.inputRef} value={this.state.item.message} onChange={this.handleChange} />
                 <button
                     type="submit"
                     onClick={() => this.props.handleOnClick(this.state.item)}
                 >
-                    {this.props.buttonText}
+                    Submit
                 </button>
                 <Link to="/" className="nav-button">
                     <IconFA icon={["fas", "arrow-left"]} />
@@ -70,7 +71,7 @@ Form.defaultProps = {
 };
 
 Form.propTypes = {
-    buttonText: PropTypes.string.isRequired,
+    headerText: PropTypes.string.isRequired,
     item: PropTypes.object,
 };
 

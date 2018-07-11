@@ -11,7 +11,7 @@ class FormAdd extends Component {
         return (
             <Form
                 handleOnClick={(data) => this.props.addItem(data, this.props.history)}
-                buttonText="Add Item"
+                headerText="Add Item"
             />
         );
     }

@@ -16,7 +16,7 @@ class FormEdit extends Component {
             <Form
                 item={this.getItem()}
                 handleOnClick={(data) => this.props.updateMessage(data, this.props.history)}
-                buttonText="Edit Item"
+                headerText="Edit Item"
             />
         );
     }
