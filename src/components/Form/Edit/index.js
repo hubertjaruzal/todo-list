@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import Form from '../index.js';
-import { updateItem } from '../../../redux/actions/todo';
+import { updateMessage } from '../../../redux/actions/todo';
 
 class FormEdit extends Component {
     getItem() {
@@ -15,7 +15,7 @@ class FormEdit extends Component {
         return (
             <Form
                 item={this.getItem()}
-                handleOnClick={(data) => this.props.updateItem(data, this.props.history)}
+                handleOnClick={(data) => this.props.updateMessage(data, this.props.history)}
                 buttonText="Edit Item"
             />
         );
@@ -24,7 +24,7 @@ class FormEdit extends Component {
 
 FormEdit.propTypes = {
     todoList: PropTypes.array.isRequired,
-    updateItem: PropTypes.func.isRequired,
+    updateMessage: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -32,7 +32,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    updateItem
+    updateMessage
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormEdit);

@@ -14,6 +14,7 @@ class Form extends Component {
             item: {
                 id: null,
                 message: '',
+                done: false,
             }
         }
 
@@ -36,7 +37,7 @@ class Form extends Component {
     }
 
     handleChange(e) {
-        this.setState({ item: { id: this.state.item.id, message: e.target.value } });
+        this.setState({ item: { id: this.state.item.id, message: e.target.value, done: this.state.item.done } });
     }
 
     render() {
@@ -60,6 +61,7 @@ Form.defaultProps = {
     item: {
         id: null,
         message: '',
+        done: false,
     }
 };
 
