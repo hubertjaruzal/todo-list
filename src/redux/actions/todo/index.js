@@ -9,7 +9,17 @@ export function addItem(data, history) {
     return (dispatch, getState) => {
         dispatch({
             type: 'ADD_ITEM',
-            data: { id: generateID(getState().todo.list), message: data }
+            data: { id: generateID(getState().todo.list), message: data.message }
+        });
+        history.push('/');
+    }
+}
+
+export function updateItem(data, history) {
+    return (dispatch, getState) => {
+        dispatch({
+            type: 'UPDATE_ITEM',
+            data: { id: data.id, message: data.message }
         });
         history.push('/');
     }

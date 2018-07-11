@@ -9,7 +9,10 @@ import { addItem } from '../../../redux/actions/todo';
 class FormAdd extends Component {
     render() {
         return (
-            <Form handleOnClick={(data) => this.props.addItem(data, this.props.history)} />
+            <Form
+                handleOnClick={(data) => this.props.addItem(data, this.props.history)}
+                buttonText="Add Item"
+            />
         );
     }
 }

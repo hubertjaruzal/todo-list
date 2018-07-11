@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import IconFA from '@fortawesome/react-fontawesome';
+import _isEqual from 'lodash/isEqual';
 
 import './index.scss';
 
@@ -10,21 +11,43 @@ class Form extends Component {
         super(props);
 
         this.state = {
-            message: ''
+            item: {
+                id: null,
+                message: '',
+            }
         }
 
         this.handleChange = this.handleChange.bind(this);
+        this.setItem = this.setItem.bind(this);
+    }
+
+    componentDidMount() {
+        this.setItem(this.props.item);
+    }
+
+    componentDidUpdate(prevProps) {
+        if(!_isEqual(this.props.item, prevProps.item)) {
+            this.setItem(this.props.item);
+        }
+    }
+
+    setItem(item) {
+        this.setState({ item });
     }
 
     handleChange(e) {
-        this.setState({ message: e.target.value });
+        this.setState({ item: { id: this.state.item.id, message: e.target.value } });
     }
 
     render() {
         return (
             <div className="form-container">
-                <input value={this.state.message} onChange={this.handleChange} />
-                <button onClick={() => this.props.handleOnClick(this.state.message)}>Add item</button>
+                <input value={this.state.item.message} onChange={this.handleChange} />
+                <button
+                    onClick={() => this.props.handleOnClick(this.state.item)}
+                >
+                    {this.props.buttonText}
+                </button>
                 <Link to="/" className="nav-button">
                     <IconFA icon={["fas", "arrow-left"]} />
                 </Link>
@@ -33,8 +56,16 @@ class Form extends Component {
     }
 }
 
+Form.defaultProps = {
+    item: {
+        id: null,
+        message: '',
+    }
+};
+
 Form.propTypes = {
-    todoList: PropTypes.array.isRequired,
+    buttonText: PropTypes.string.isRequired,
+    item: PropTypes.object,
 };
 
 export default Form;
