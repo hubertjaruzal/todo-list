@@ -1,5 +1,5 @@
 @font-face {
-  font-family: "Lato";
+  font-family: Lato;
   src:
     url("./fonts/Lato2OFLWeb/Lato/fonts/Lato-Regular.eot") format('eot'),
     url("./fonts/Lato2OFLWeb/Lato/fonts/Lato-Regular.ttf") format('ttf'),
@@ -8,7 +8,7 @@
 }
 
 @font-face {
-  font-family: "LatoHairline";
+  font-family: LatoHairline;
   src:
       url("./fonts/Lato2OFLWeb/Lato/fonts/Lato-Hairline.eot") format('eot'),
       url("./fonts/Lato2OFLWeb/Lato/fonts/Lato-Hairline.ttf") format('ttf'),
@@ -17,7 +17,7 @@
 }
 
 @font-face {
-  font-family: "LatoLight";
+  font-family: LatoLight;
   src:
       url("./fonts/Lato2OFLWeb/Lato/fonts/Lato-Light.eot") format('eot'),
       url("./fonts/Lato2OFLWeb/Lato/fonts/Lato-Light.ttf") format('ttf'),
@@ -26,7 +26,7 @@
 }
 
 @font-face {
-  font-family: "LatoBold";
+  font-family: LatoBold;
   src:
       url("./fonts/Lato2OFLWeb/Lato/fonts/Lato-Bold.eot") format('eot'),
       url("./fonts/Lato2OFLWeb/Lato/fonts/Lato-Bold.ttf") format('ttf'),
@@ -37,7 +37,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: Lato;
 }
 
 button {

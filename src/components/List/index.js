@@ -12,7 +12,7 @@ import './index.scss';
 class List extends Component {
     render() {
         return (
-            <div>
+            <div className="list-container">
                 <ul className="list">
                     {
                         this.props.todoList.map((item, index) => (

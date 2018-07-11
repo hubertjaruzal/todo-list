@@ -11,10 +11,14 @@
         color: white;
     }
     .button-check {
-        width: 30px;
+        display: flex;
         height: 30px;
+        width: 30px;
         border: 1px solid #e1e1e1;
         margin-right: 15px;
+        font-size: 12px;
+        justify-content: center;
+        align-items: center;
         &--done {
             background: #4b60a2;
             border: 1px solid #4b60a2;
@@ -33,12 +37,13 @@
     display: flex;
     button, a {
         display: flex;
+        height: 31px;
+        width: 31px;
         justify-content: center;
         align-items: center;
         margin-left: 15px;
         border: none;
-        width: 31px;
-        height: 31px;
+        font-size: 12px;
     }
     .button-edit {
         background: #ff9800;
