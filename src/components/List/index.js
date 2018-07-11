@@ -5,7 +5,9 @@ import { bindActionCreators } from 'redux';
 import IconFA from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import _isEqual from 'lodash/isEqual';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
+import { setItems } from '../../redux/actions/todo';
 import Row from './Row';
 
 import './index.scss';
@@ -24,6 +26,7 @@ class List extends Component {
         this.setList = this.setList.bind(this);
         this.filterList = this.filterList.bind(this);
         this.handleShow = this.handleShow.bind(this);
+        this.onDragEnd = this.onDragEnd.bind(this);
     }
 
     componentDidMount() {
@@ -65,6 +68,28 @@ class List extends Component {
                 todoList
             });
         }
+    }
+
+    reorder(list, startIndex, endIndex) {
+        const result = Array.from(list);
+        const [removed] = result.splice(startIndex, 1);
+        result.splice(endIndex, 0, removed);
+        console.log(result)
+        return result;
+    };
+
+    onDragEnd(result) {
+        if (!result.destination) {
+            return;
+        }
+
+        const items = this.reorder(
+            this.state.todoList,
+            result.source.index,
+            result.destination.index
+        );
+
+        this.props.setItems(items);
     }
 
     render() {
@@ -113,13 +138,34 @@ class List extends Component {
 
                     </div>
                 </div>
-                <ul className="list">
-                    {
-                        this.state.todoList.map((item, index) => (
-                            <Row item={item} key={index} />
-                        ))
-                    }
-                </ul>
+
+                    <ul className="list">
+                        <DragDropContext onDragEnd={this.onDragEnd}>
+                            <Droppable droppableId="droppable">
+                                {(provided, snapshot) => (
+                                    <div ref={provided.innerRef}>
+                                        {
+                                            this.state.todoList.map((item, index) => (
+                                                <Draggable key={item.id} draggableId={item.id} index={index}>
+                                                    {(provided, snapshot) => (
+                                                        <div
+                                                          ref={provided.innerRef}
+                                                          {...provided.draggableProps}
+                                                          {...provided.dragHandleProps}
+                                                        >
+                                                          <Row item={item} key={index} />
+                                                        </div>
+                                                    )}
+                                                </Draggable>
+
+                                            ))
+                                        }
+                                        {provided.placeholder}
+                                    </div>
+                                )}
+                            </Droppable>
+                        </DragDropContext>
+                    </ul>
                 <Link to="/add" className="nav-button">
                     <IconFA icon={["fas", "plus"]} />
                 </Link>
@@ -130,12 +176,15 @@ class List extends Component {
 
 List.propTypes = {
     todoList: PropTypes.array.isRequired,
+    setItems: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
     todoList: state.todo.list,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({
+    setItems
+}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(List);

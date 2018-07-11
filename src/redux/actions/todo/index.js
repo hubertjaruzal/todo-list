@@ -5,13 +5,18 @@ function generateID(list) {
     return 1;
 }
 
-export function setItems() {
+export function setItems(data = [], type = 'SET_ITEMS') {
     return (dispatch, getState) => {
-        if(window.localStorage && window.localStorage.react_todo_list_items) {
-            dispatch({
-                type: 'SET_ITEMS',
-                data: JSON.parse(window.localStorage.react_todo_list_items)
-            });
+        if(data.length) {
+            dispatch({ type, data });
+            dispatch(saveDataInLocalStorage());
+        } else {
+            if(window.localStorage && window.localStorage.react_todo_list_items) {
+                dispatch({
+                    type,
+                    data: JSON.parse(window.localStorage.react_todo_list_items)
+                });
+            }
         }
     }
 }
