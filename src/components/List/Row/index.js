@@ -13,7 +13,10 @@ class Row extends Component {
     render() {
         return (
             <li className="row">
-                <button onClick={() => this.props.toggleDone(this.props.item)} className="button button-check">
+                <button
+                    onClick={() => this.props.toggleDone(this.props.item)}
+                    className={`button button-check ${this.props.item.done ? 'button-check--done' : 'button-check--undone'}`}
+                >
                     <IconFA icon={["fas", "check"]} />
                 </button>
                 <span>{this.props.item.message}</span>

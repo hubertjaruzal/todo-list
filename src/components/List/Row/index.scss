@@ -13,9 +13,15 @@
     .button-check {
         width: 30px;
         height: 30px;
-        background: white;
         border: 1px solid #e1e1e1;
         margin-right: 15px;
+        &--done {
+            background: #4b60a2;
+            border: 1px solid #4b60a2;
+        }
+        &--undone {
+            background: white;
+        }
     }
     span {
         flex: 1;
