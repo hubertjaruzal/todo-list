@@ -18,7 +18,7 @@
     background: white;
     .app-header {
         display: flex;
-        height: 150px;
+        height: calc(150px + 60px);
         width: calc(100% - 60px);
         align-items: center;
         justify-content: start;
