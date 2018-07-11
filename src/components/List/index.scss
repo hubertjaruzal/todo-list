@@ -1,6 +1,9 @@
 .list-container {
+    display: flex;
     height: calc(100% - 150px);
     overflow: auto;
+    flex: 1;
+    flex-direction: column;
 }
 
 .list-settings {
