@@ -21,7 +21,6 @@ class Form extends Component {
         this.inputRef = React.createRef();
 
         this.handleChange = this.handleChange.bind(this);
-        this.setItem = this.setItem.bind(this);
     }
 
     componentDidMount() {
@@ -50,7 +49,10 @@ class Form extends Component {
                 <input ref={this.inputRef} value={this.state.item.message} onChange={this.handleChange} />
                 <button
                     type="submit"
-                    onClick={(e) => this.props.handleOnClick(this.state.item)}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        this.props.handleOnClick(this.state.item);
+                    }}
                 >
                     Submit
                 </button>
