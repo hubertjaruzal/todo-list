@@ -50,7 +50,7 @@ class Form extends Component {
                 <input ref={this.inputRef} value={this.state.item.message} onChange={this.handleChange} />
                 <button
                     type="submit"
-                    onClick={() => this.props.handleOnClick(this.state.item)}
+                    onClick={(e) => this.props.handleOnClick(this.state.item)}
                 >
                     Submit
                 </button>

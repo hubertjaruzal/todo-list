@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -6,15 +6,13 @@ import { bindActionCreators } from 'redux';
 import Form from '../index.js';
 import { addItem } from '../../../redux/actions/todo';
 
-class FormAdd extends Component {
-    render() {
-        return (
-            <Form
-                handleOnClick={(data) => this.props.addItem(data, this.props.history)}
-                headerText="Add Item"
-            />
-        );
-    }
+const FormAdd = (props) => {
+    return (
+        <Form
+            handleOnClick={(data) => props.addItem(data, props.history)}
+            headerText="Add Item"
+        />
+    );
 }
 
 FormAdd.propTypes = {
